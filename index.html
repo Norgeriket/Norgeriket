@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101410">
+  <meta name="description" content="NorgeRiket – et Minecraft Java-community.">
+  <title>NorgeRiket — Minecraft Server</title>
+  <style>
+    :root { color-scheme: dark; --bg:#101410; --panel:#171e18; --line:#2b382d; --text:#f0f4ef; --muted:#a9b6aa; --green:#9bd49b; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,sans-serif; background:var(--bg); color:var(--text); }
+    a { color:inherit; }
+    .wrap { width:min(100% - 40px, 1000px); margin:auto; }
+    header { border-bottom:1px solid var(--line); position:sticky; top:0; background:#101410ed; backdrop-filter:blur(12px); z-index:5; }
+    nav { min-height:68px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    .brand { font-weight:800; letter-spacing:.04em; text-decoration:none; }
+    .brand span { color:var(--green); }
+    .links { display:flex; gap:22px; flex-wrap:wrap; }
+    .links a { color:var(--muted); text-decoration:none; font-size:.94rem; }
+    .links a:hover { color:var(--green); }
+    .hero { padding:100px 0 86px; text-align:center; }
+    .eyebrow { color:var(--green); text-transform:uppercase; letter-spacing:.18em; font-size:.78rem; font-weight:700; }
+    .site-logo { display:block; width:min(100%, 520px); height:auto; max-height:240px; object-fit:contain; margin:0 auto 22px; }
+    h1 { font-size:clamp(2.8rem,8vw,5.5rem); line-height:1.02; margin:16px 0; letter-spacing:-.055em; }
+    .hero p { max-width:620px; margin:0 auto 28px; color:var(--muted); font-size:1.1rem; }
+    .actions { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; }
+    .btn { display:inline-block; padding:11px 19px; border-radius:9px; text-decoration:none; font-weight:700; border:1px solid var(--line); }
+    .primary { background:var(--green); color:#102012; border-color:var(--green); }
+    .secondary { background:transparent; }
+    section { padding:54px 0; border-top:1px solid var(--line); }
+    h2 { font-size:1.8rem; margin:0 0 8px; letter-spacing:-.03em; }
+    .intro { color:var(--muted); margin:0 0 25px; }
+    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+    .card { background:var(--panel); border:1px solid var(--line); border-radius:13px; padding:20px; }
+    .card h3 { margin:0 0 7px; font-size:1.05rem; }
+    .card p, .card li { color:var(--muted); margin:0; }
+    .rule-list { padding-left:20px; margin:0; }
+    .rule-list li { margin:0 0 10px; padding-left:4px; }
+    .staff-role { color:var(--green); font-size:.8rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; }
+    footer { padding:28px 0 40px; color:var(--muted); font-size:.9rem; text-align:center; }
+    @media (max-width:650px) {
+      .wrap { width:min(100% - 28px,1000px); }
+      nav { align-items:flex-start; flex-direction:column; padding:14px 0; gap:8px; }
+      .links { gap:14px; }
+      .hero { padding:75px 0 65px; }
+      .grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="wrap">
+      <a class="brand" href="#home">Norge<span>Riket</span></a>
+      <div class="links">
+        <a href="#home">Hjem</a>
+        <a href="#regler">Regler</a>
+        <a href="#staff">Team</a>
+        <a href="#discord">Discord</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="hero" id="home" style="border:0">
+        <img class="site-logo" src="logo.png" alt="NorgeRiket SMP-logo">
+        <div class="eyebrow">Minecraft Java Edition</div>
+        <h1>Velkommen til<br>NorgeRiket.</h1>
+        <p>Et norsk Minecraft-fellesskap. Bli med, bygg ditt eget rike og spill sammen med andre.</p>
+        <div class="actions">
+          <a class="btn primary" href="https://discord.gg/fcEsBbkKDC" target="_blank" rel="noopener">Bli med på Discord</a>
+          <a class="btn secondary" href="#regler">Les reglene</a>
+        </div>
+      </section>
+
+      <section id="regler">
+        <h2>Serverregler</h2>
+        <p class="intro">Vis respekt og bidra til et hyggelig miljø for alle.</p>
+        <div class="card">
+          <ol class="rule-list">
+            <li>Behandle andre spillere med respekt. Ingen trakassering eller mobbing.</li>
+            <li>Ikke bruk hacks, cheats eller utnytt feil for å skaffe deg fordeler.</li>
+            <li>Ikke grief eller stjel fra andre spillere.</li>
+            <li>Unngå spam, reklame og forstyrrende oppførsel i chatten.</li>
+            <li>Følg beskjeder fra staff og bruk Discord-kanalene riktig.</li>
+            <li>Ikke del personopplysninger om deg selv eller andre.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="staff">
+        <h2>Teamet</h2>
+        <p class="intro">Møt personene som driver og hjelper til på NorgeRiket.</p>
+        <div class="grid">
+          <article class="card"><div class="staff-role">Eier</div><h3>Daniel</h3><p>Ansvarlig for NorgeRiket.</p></article>
+          <article class="card"><div class="staff-role">Co-eier</div><h3>Nick13osix</h3><p>Hjelper med å drive og utvikle serveren.</p></article>
+          <article class="card"><div class="staff-role">Administrator</div><h3>SnoweeMC67</h3><p>Hjelper med drift og moderering.</p></article>
+          <article class="card"><div class="staff-role">Administrator</div><h3>VoidTech</h3><p>Hjelper med drift og moderering.</p></article>
+          <article class="card"><div class="staff-role">Administrator</div><h3>OliMC</h3><p>Hjelper med drift og moderering.</p></article>
+        </div>
+      </section>
+
+      <section id="discord">
+        <h2>Finn fellesskapet</h2>
+        <p class="intro">Nyheter, informasjon og kontakt med NorgeRiket finner du på Discord.</p>
+        <a class="btn primary" href="https://discord.gg/fcEsBbkKDC" target="_blank" rel="noopener">Åpne Discord</a>
+      </section>
+    </div>
+  </main>
+
+  <footer><div class="wrap">© <span id="year"></span> NorgeRiket. Ikke tilknyttet Mojang eller Microsoft.</div></footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
