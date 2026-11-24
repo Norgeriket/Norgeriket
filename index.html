@@ -1,116 +1,450 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="no">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101410">
-  <meta name="description" content="NorgeRiket – et Minecraft Java-community.">
-  <title>NorgeRiket — Minecraft Server</title>
-  <style>
-    :root { color-scheme: dark; --bg:#101410; --panel:#171e18; --line:#2b382d; --text:#f0f4ef; --muted:#a9b6aa; --green:#9bd49b; }
-    * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-    body { margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,sans-serif; background:var(--bg); color:var(--text); }
-    a { color:inherit; }
-    .wrap { width:min(100% - 40px, 1000px); margin:auto; }
-    header { border-bottom:1px solid var(--line); position:sticky; top:0; background:#101410ed; backdrop-filter:blur(12px); z-index:5; }
-    nav { min-height:68px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
-    .brand { font-weight:800; letter-spacing:.04em; text-decoration:none; }
-    .brand span { color:var(--green); }
-    .links { display:flex; gap:22px; flex-wrap:wrap; }
-    .links a { color:var(--muted); text-decoration:none; font-size:.94rem; }
-    .links a:hover { color:var(--green); }
-    .hero { padding:100px 0 86px; text-align:center; }
-    .eyebrow { color:var(--green); text-transform:uppercase; letter-spacing:.18em; font-size:.78rem; font-weight:700; }
-    .site-logo { display:block; width:min(100%, 520px); height:auto; max-height:240px; object-fit:contain; margin:0 auto 22px; }
-    h1 { font-size:clamp(2.8rem,8vw,5.5rem); line-height:1.02; margin:16px 0; letter-spacing:-.055em; }
-    .hero p { max-width:620px; margin:0 auto 28px; color:var(--muted); font-size:1.1rem; }
-    .actions { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; }
-    .btn { display:inline-block; padding:11px 19px; border-radius:9px; text-decoration:none; font-weight:700; border:1px solid var(--line); }
-    .primary { background:var(--green); color:#102012; border-color:var(--green); }
-    .secondary { background:transparent; }
-    section { padding:54px 0; border-top:1px solid var(--line); }
-    h2 { font-size:1.8rem; margin:0 0 8px; letter-spacing:-.03em; }
-    .intro { color:var(--muted); margin:0 0 25px; }
-    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
-    .card { background:var(--panel); border:1px solid var(--line); border-radius:13px; padding:20px; }
-    .card h3 { margin:0 0 7px; font-size:1.05rem; }
-    .card p, .card li { color:var(--muted); margin:0; }
-    .rule-list { padding-left:20px; margin:0; }
-    .rule-list li { margin:0 0 10px; padding-left:4px; }
-    .staff-role { color:var(--green); font-size:.8rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; }
-    footer { padding:28px 0 40px; color:var(--muted); font-size:.9rem; text-align:center; }
-    @media (max-width:650px) {
-      .wrap { width:min(100% - 28px,1000px); }
-      nav { align-items:flex-start; flex-direction:column; padding:14px 0; gap:8px; }
-      .links { gap:14px; }
-      .hero { padding:75px 0 65px; }
-      .grid { grid-template-columns:1fr; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="NorgeRiket SMP – et norsk Minecraft Java-fellesskap med juleglede. Bli med på Discord!">
+<meta name="theme-color" content="#0b2a1c">
+<title>NorgeRiket SMP — God jul!</title>
+<link rel="icon" href="logo.png">
+<style>
+  :root{
+    --green-900:#06180f;
+    --green-800:#0b2a1c;
+    --green-700:#0f3b27;
+    --green-600:#145233;
+    --red:#c8102e;
+    --red-dark:#8f0b21;
+    --gold:#f2c14e;
+    --gold-light:#ffe08a;
+    --gold-dark:#b8862b;
+    --snow:#f7fbff;
+    --text:#eaf3ec;
+    --muted:#b7cbbd;
+    --radius:18px;
+    --shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:76px}
+  body{
+    margin:0;
+    font-family:"Segoe UI",system-ui,-apple-system,Roboto,"Helvetica Neue",Arial,sans-serif;
+    color:var(--text);
+    line-height:1.6;
+    background:
+      radial-gradient(1200px 600px at 50% -10%, rgba(200,16,46,.18), transparent 60%),
+      radial-gradient(900px 500px at 100% 30%, rgba(242,193,78,.08), transparent 60%),
+      linear-gradient(180deg,var(--green-800),var(--green-900) 70%);
+    background-attachment:fixed;
+    overflow-x:hidden;
+  }
+  img{max-width:100%}
+  a{color:var(--gold-light)}
+  #snow{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:50}
+
+  /* Julelys-stripe */
+  .lights{
+    height:14px;
+    background:
+      radial-gradient(circle at 10px 7px,var(--red) 0 4px,transparent 5px) 0 0/40px 14px,
+      radial-gradient(circle at 30px 7px,var(--gold) 0 4px,transparent 5px) 0 0/40px 14px,
+      linear-gradient(var(--green-900),var(--green-900));
+    animation:glow 2.4s ease-in-out infinite alternate;
+  }
+  @keyframes glow{from{filter:brightness(.8)}to{filter:brightness(1.25)}}
+
+  /* Navigasjon */
+  header{
+    position:sticky;top:0;z-index:40;
+    background:rgba(6,24,15,.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(242,193,78,.25);
+  }
+  .nav{
+    max-width:1100px;margin:0 auto;padding:10px 16px;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  }
+  .brand{display:flex;align-items:center;gap:10px;color:var(--gold-light);text-decoration:none;font-weight:800;letter-spacing:.5px}
+  .brand img{width:38px;height:38px;object-fit:contain;border-radius:8px}
+  nav ul{list-style:none;margin:0;padding:0;display:flex;gap:4px;flex-wrap:wrap}
+  nav a{
+    display:block;padding:8px 12px;border-radius:999px;
+    color:var(--text);text-decoration:none;font-weight:600;font-size:.95rem;
+  }
+  nav a:hover,nav a:focus-visible{background:rgba(242,193,78,.16);color:var(--gold-light);outline:none}
+
+  main{position:relative;z-index:1}
+  section{max-width:1100px;margin:0 auto;padding:64px 16px}
+  h1,h2,h3{line-height:1.2;margin:0}
+  .section-title{
+    text-align:center;font-size:clamp(1.7rem,4.5vw,2.4rem);
+    color:var(--gold-light);margin-bottom:10px;
+  }
+  .section-title::after{
+    content:"❄ ✦ ❄";display:block;font-size:.9rem;letter-spacing:8px;color:var(--red);margin-top:8px;
+  }
+  .section-sub{text-align:center;color:var(--muted);max-width:620px;margin:0 auto 36px}
+
+  /* Hero */
+  .hero{
+    text-align:center;padding-top:56px;padding-bottom:40px;
+  }
+  .hero .logo{
+    width:min(220px,55vw);height:auto;
+    filter:drop-shadow(0 8px 24px rgba(0,0,0,.5)) drop-shadow(0 0 18px rgba(242,193,78,.35));
+    animation:float 5s ease-in-out infinite;
+  }
+  @keyframes float{50%{transform:translateY(-8px)}}
+  .badge{
+    display:inline-block;margin:18px 0 10px;padding:6px 14px;border-radius:999px;
+    background:linear-gradient(135deg,var(--red),var(--red-dark));
+    color:#fff;font-weight:700;font-size:.85rem;letter-spacing:.5px;
+    box-shadow:0 4px 14px rgba(200,16,46,.45);
+  }
+  .hero h1{
+    font-size:clamp(2.1rem,7vw,3.8rem);
+    background:linear-gradient(180deg,#fff,var(--gold-light) 60%,var(--gold));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    text-shadow:none;
+  }
+  .hero p{max-width:620px;margin:14px auto 26px;color:var(--muted);font-size:1.1rem}
+  .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:13px 24px;border-radius:999px;font-weight:700;text-decoration:none;
+    transition:transform .15s ease, box-shadow .15s ease;
+    min-height:48px;
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn-red{background:linear-gradient(135deg,#e0183a,var(--red-dark));color:#fff;box-shadow:0 6px 18px rgba(200,16,46,.45)}
+  .btn-gold{background:linear-gradient(135deg,var(--gold-light),var(--gold-dark));color:#2a1d00;box-shadow:0 6px 18px rgba(242,193,78,.35)}
+  .btn-ghost{border:2px solid var(--gold);color:var(--gold-light)}
+  .btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
+  /* Kort */
+  .card{
+    background:linear-gradient(160deg,rgba(20,82,51,.55),rgba(11,42,28,.75));
+    border:1px solid rgba(242,193,78,.28);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+  }
+
+  /* Shulker-kister */
+  .chests{
+    display:grid;gap:18px;
+    grid-template-columns:repeat(3,1fr);
+  }
+  .chest{
+    padding:22px 16px 20px;text-align:center;position:relative;overflow:hidden;
+    transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+  }
+  .chest::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 50% 0%, var(--c), transparent 65%);
+    opacity:.22;pointer-events:none;
+  }
+  .chest:hover{transform:translateY(-6px);border-color:var(--c);box-shadow:0 14px 34px rgba(0,0,0,.45),0 0 22px color-mix(in srgb,var(--c) 45%,transparent)}
+  .chest svg{width:96px;height:96px;position:relative;filter:drop-shadow(0 6px 8px rgba(0,0,0,.45))}
+  .chest:hover svg{animation:wiggle .5s ease}
+  @keyframes wiggle{25%{transform:rotate(-5deg)}75%{transform:rotate(5deg)}}
+  .chest .num{
+    position:absolute;top:10px;left:12px;width:28px;height:28px;border-radius:50%;
+    display:grid;place-items:center;font-weight:800;font-size:.85rem;
+    background:var(--gold);color:#2a1d00;
+  }
+  .chest h3{font-size:1.3rem;margin:8px 0 4px;color:#fff;position:relative}
+  .chest p{margin:0;color:var(--muted);font-size:.95rem;position:relative}
+
+  /* Regler */
+  .rules{list-style:none;margin:0;padding:0;counter-reset:regel;display:grid;gap:12px;max-width:820px;margin-inline:auto}
+  .rules li{
+    counter-increment:regel;position:relative;
+    padding:16px 16px 16px 66px;
+  }
+  .rules li::before{
+    content:counter(regel);
+    position:absolute;left:14px;top:50%;transform:translateY(-50%);
+    width:38px;height:38px;border-radius:50%;
+    display:grid;place-items:center;font-weight:800;color:#fff;
+    background:radial-gradient(circle at 30% 30%,#ff5b73,var(--red) 55%,var(--red-dark));
+    box-shadow:0 0 0 3px var(--gold),0 4px 10px rgba(0,0,0,.4);
+  }
+
+  /* Team */
+  .staff{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+  .member{padding:24px 16px;text-align:center}
+  .member .icon{
+    width:64px;height:64px;margin:0 auto 12px;border-radius:50%;
+    display:grid;place-items:center;font-size:1.9rem;
+    background:linear-gradient(135deg,var(--red),var(--red-dark));
+    box-shadow:0 0 0 3px var(--gold);
+  }
+  .member.owner .icon{background:linear-gradient(135deg,var(--gold-light),var(--gold-dark))}
+  .role{
+    display:inline-block;padding:3px 12px;border-radius:999px;font-size:.8rem;font-weight:700;
+    background:rgba(242,193,78,.18);color:var(--gold-light);margin-bottom:8px;
+  }
+  .member h3{font-size:1.2rem;color:#fff;word-break:break-word}
+
+  /* Discord */
+  .discord{
+    text-align:center;padding:44px 20px;
+    background:
+      linear-gradient(135deg,rgba(200,16,46,.35),rgba(20,82,51,.55)),
+      var(--green-800);
+  }
+  .discord h2{font-size:clamp(1.6rem,4.5vw,2.2rem);color:var(--gold-light);margin-bottom:10px}
+  .discord p{color:var(--text);max-width:520px;margin:0 auto 22px}
+
+  footer{
+    position:relative;z-index:1;text-align:center;padding:30px 16px 40px;
+    color:var(--muted);font-size:.9rem;border-top:1px solid rgba(242,193,78,.2);
+  }
+  footer strong{color:var(--gold-light)}
+
+  /* Responsivt */
+  @media (max-width:820px){
+    .chests{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:560px){
+    section{padding:48px 14px}
+    .nav{justify-content:center}
+    nav ul{justify-content:center}
+    nav a{padding:7px 10px;font-size:.9rem}
+    .chests{gap:12px}
+    .chest{padding:18px 10px 16px}
+    .chest svg{width:78px;height:78px}
+    .chest h3{font-size:1.1rem}
+    .chest p{font-size:.85rem}
+    .btn{width:100%;justify-content:center}
+    .btns{width:100%}
+    .rules li{padding:14px 14px 14px 60px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    html{scroll-behavior:auto}
+  }
+</style>
 </head>
 <body>
-  <header>
-    <nav class="wrap">
-      <a class="brand" href="#home">Norge<span>Riket</span></a>
-      <div class="links">
-        <a href="#home">Hjem</a>
-        <a href="#regler">Regler</a>
-        <a href="#staff">Team</a>
-        <a href="#discord">Discord</a>
-      </div>
+
+<canvas id="snow" aria-hidden="true"></canvas>
+
+<!-- Shulker-symbol (gjenbrukes for alle kistene) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="shulker" viewBox="0 0 64 64">
+      <!-- bunn -->
+      <rect x="8" y="30" width="48" height="26" rx="3" fill="var(--c)"/>
+      <rect x="8" y="30" width="48" height="26" rx="3" fill="#000" opacity=".22"/>
+      <rect x="8" y="44" width="48" height="2" fill="#000" opacity=".18"/>
+      <!-- lokk -->
+      <rect x="5" y="10" width="54" height="22" rx="4" fill="var(--c)"/>
+      <rect x="5" y="10" width="54" height="8" rx="4" fill="#fff" opacity=".22"/>
+      <rect x="5" y="28" width="54" height="4" fill="#000" opacity=".2"/>
+      <!-- lås -->
+      <rect x="27" y="26" width="10" height="10" rx="2" fill="#2b2b2b"/>
+      <rect x="29" y="28" width="6" height="6" rx="1" fill="#f2c14e"/>
+      <!-- pikseldetaljer -->
+      <rect x="12" y="14" width="4" height="4" fill="#fff" opacity=".35"/>
+      <rect x="48" y="48" width="4" height="4" fill="#fff" opacity=".18"/>
+      <rect x="12" y="48" width="4" height="4" fill="#fff" opacity=".18"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="lights" aria-hidden="true"></div>
+
+<header>
+  <div class="nav">
+    <a class="brand" href="#hjem"><img src="logo.png" alt="">NorgeRiket SMP</a>
+    <nav aria-label="Hovedmeny">
+      <ul>
+        <li><a href="#hjem">Hjem</a></li>
+        <li><a href="#kister">Kister</a></li>
+        <li><a href="#regler">Regler</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#discord">Discord</a></li>
+      </ul>
     </nav>
-  </header>
+  </div>
+</header>
 
-  <main>
-    <div class="wrap">
-      <section class="hero" id="home" style="border:0">
-        <img class="site-logo" src="logo.png" alt="NorgeRiket SMP-logo">
-        <div class="eyebrow">Minecraft Java Edition</div>
-        <h1>Velkommen til<br>NorgeRiket.</h1>
-        <p>Et norsk Minecraft-fellesskap. Bli med, bygg ditt eget rike og spill sammen med andre.</p>
-        <div class="actions">
-          <a class="btn primary" href="https://discord.gg/fcEsBbkKDC" target="_blank" rel="noopener">Bli med på Discord</a>
-          <a class="btn secondary" href="#regler">Les reglene</a>
-        </div>
-      </section>
-
-      <section id="regler">
-        <h2>Serverregler</h2>
-        <p class="intro">Vis respekt og bidra til et hyggelig miljø for alle.</p>
-        <div class="card">
-          <ol class="rule-list">
-            <li>Behandle andre spillere med respekt. Ingen trakassering eller mobbing.</li>
-            <li>Ikke bruk hacks, cheats eller utnytt feil for å skaffe deg fordeler.</li>
-            <li>Ikke grief eller stjel fra andre spillere.</li>
-            <li>Unngå spam, reklame og forstyrrende oppførsel i chatten.</li>
-            <li>Følg beskjeder fra staff og bruk Discord-kanalene riktig.</li>
-            <li>Ikke del personopplysninger om deg selv eller andre.</li>
-          </ol>
-        </div>
-      </section>
-
-      <section id="staff">
-        <h2>Teamet</h2>
-        <p class="intro">Møt personene som driver og hjelper til på NorgeRiket.</p>
-        <div class="grid">
-          <article class="card"><div class="staff-role">Eier</div><h3>Daniel</h3><p>Ansvarlig for NorgeRiket.</p></article>
-          <article class="card"><div class="staff-role">Co-eier</div><h3>Nick13osix</h3><p>Hjelper med å drive og utvikle serveren.</p></article>
-          <article class="card"><div class="staff-role">Administrator</div><h3>SnoweeMC67</h3><p>Hjelper med drift og moderering.</p></article>
-          <article class="card"><div class="staff-role">Administrator</div><h3>VoidTech</h3><p>Hjelper med drift og moderering.</p></article>
-          <article class="card"><div class="staff-role">Administrator</div><h3>OliMC</h3><p>Hjelper med drift og moderering.</p></article>
-        </div>
-      </section>
-
-      <section id="discord">
-        <h2>Finn fellesskapet</h2>
-        <p class="intro">Nyheter, informasjon og kontakt med NorgeRiket finner du på Discord.</p>
-        <a class="btn primary" href="https://discord.gg/fcEsBbkKDC" target="_blank" rel="noopener">Åpne Discord</a>
-      </section>
+<main>
+  <!-- HERO -->
+  <section class="hero" id="hjem">
+    <img class="logo" src="logo.png" alt="NorgeRiket SMP-logo">
+    <div><span class="badge">🎄 God jul fra NorgeRiket! 🎅</span></div>
+    <h1>Velkommen til NorgeRiket SMP</h1>
+    <p>Et norsk Minecraft-fellesskap med juleglede. Bli med, bygg ditt eget rike og spill sammen med andre i vintermørket.</p>
+    <div class="btns">
+      <a class="btn btn-red" href="https://discord.gg/fcEsBbkKDC" target="_blank" rel="noopener">🎁 Bli med på Discord</a>
+      <a class="btn btn-ghost" href="#regler">📜 Les reglene</a>
     </div>
-  </main>
+  </section>
 
-  <footer><div class="wrap">© <span id="year"></span> NorgeRiket. Ikke tilknyttet Mojang eller Microsoft.</div></footer>
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <!-- SHULKER-KISTER -->
+  <section id="kister">
+    <h2 class="section-title">Julekistene våre</h2>
+    <p class="section-sub">Seks shulker-kister fulle av overraskelser. Hvilken vil du åpne først?</p>
+
+    <div class="chests">
+      <article class="card chest" style="--c:#35c6d8">
+        <span class="num">1</span>
+        <svg role="img" aria-label="Shulker-kiste: Media"><use href="#shulker"/></svg>
+        <h3>Media</h3>
+        <p>Kisten for innholdsskapere</p>
+      </article>
+
+      <article class="card chest" style="--c:#e0183a">
+        <span class="num">2</span>
+        <svg role="img" aria-label="Shulker-kiste: Mythic"><use href="#shulker"/></svg>
+        <h3>Mythic</h3>
+        <p>Mytisk og svært sjelden</p>
+      </article>
+
+      <article class="card chest" style="--c:#f2a900">
+        <span class="num">3</span>
+        <svg role="img" aria-label="Shulker-kiste: Legendary"><use href="#shulker"/></svg>
+        <h3>Legendary</h3>
+        <p>Legendarisk gullkiste</p>
+      </article>
+
+      <article class="card chest" style="--c:#a64dff">
+        <span class="num">4</span>
+        <svg role="img" aria-label="Shulker-kiste: Episk"><use href="#shulker"/></svg>
+        <h3>Episk</h3>
+        <p>Episke skatter venter</p>
+      </article>
+
+      <article class="card chest" style="--c:#b9c4bd">
+        <span class="num">5</span>
+        <svg role="img" aria-label="Shulker-kiste: Common"><use href="#shulker"/></svg>
+        <h3>Common</h3>
+        <p>Den vanlige hverdagskisten</p>
+      </article>
+
+      <article class="card chest" style="--c:#2fb36a">
+        <span class="num">6</span>
+        <svg role="img" aria-label="Shulker-kiste: Event"><use href="#shulker"/></svg>
+        <h3>Event</h3>
+        <p>Spesialkiste for arrangementer</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- REGLER -->
+  <section id="regler">
+    <h2 class="section-title">Serverregler</h2>
+    <p class="section-sub">Vis respekt og bidra til et hyggelig miljø for alle.</p>
+
+    <ol class="rules">
+      <li class="card">Behandle andre spillere med respekt. Ingen trakassering eller mobbing.</li>
+      <li class="card">Ikke bruk hacks, cheats eller utnytt feil for å skaffe deg fordeler.</li>
+      <li class="card">Ikke grief eller stjel fra andre spillere.</li>
+      <li class="card">Unngå spam, reklame og forstyrrende oppførsel i chatten.</li>
+      <li class="card">Følg beskjeder fra staff og bruk Discord-kanalene riktig.</li>
+      <li class="card">Ikke del personopplysninger om deg selv eller andre.</li>
+    </ol>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team">
+    <h2 class="section-title">Teamet</h2>
+    <p class="section-sub">Møt nissene som driver og hjelper til på NorgeRiket.</p>
+
+    <div class="staff">
+      <article class="card member owner">
+        <div class="icon" aria-hidden="true">👑</div>
+        <span class="role">Eier</span>
+        <h3>Daniel</h3>
+      </article>
+      <article class="card member">
+        <div class="icon" aria-hidden="true">⭐</div>
+        <span class="role">Co-eier</span>
+        <h3>Nick13osix</h3>
+      </article>
+      <article class="card member">
+        <div class="icon" aria-hidden="true">🎅</div>
+        <span class="role">Admin</span>
+        <h3>SnoweeMC67</h3>
+      </article>
+      <article class="card member">
+        <div class="icon" aria-hidden="true">🎅</div>
+        <span class="role">Admin</span>
+        <h3>VoidTech</h3>
+      </article>
+      <article class="card member">
+        <div class="icon" aria-hidden="true">🎅</div>
+        <span class="role">Admin</span>
+        <h3>OliMC</h3>
+      </article>
+    </div>
+  </section>
+
+  <!-- DISCORD -->
+  <section id="discord">
+    <div class="card discord">
+      <h2>🎁 Finn fellesskapet</h2>
+      <p>Nyheter, informasjon og kontakt med NorgeRiket finner du på Discord. Kom og feir jula sammen med oss!</p>
+      <a class="btn btn-gold" href="https://discord.gg/fcEsBbkKDC" target="_blank" rel="noopener">Åpne Discord</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div>🎄 <strong>NorgeRiket SMP</strong> — God jul og godt nytt år! 🎄</div>
+  <div>© NorgeRiket. Ikke tilknyttet Mojang eller Microsoft.</div>
+</footer>
+
+<script>
+(function(){
+  var canvas = document.getElementById('snow');
+  if(!canvas || !canvas.getContext) return;
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var ctx = canvas.getContext('2d');
+  var w, h, flakes = [], dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+  function resize(){
+    w = window.innerWidth; h = window.innerHeight;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    var count = Math.round(Math.min(140, Math.max(40, w / 10)));
+    while(flakes.length < count) flakes.push(make(true));
+    flakes.length = count;
+  }
+  function make(randomY){
+    return {
+      x: Math.random() * w,
+      y: randomY ? Math.random() * h : -10,
+      r: Math.random() * 2.8 + 0.8,
+      s: Math.random() * 0.9 + 0.4,
+      d: Math.random() * Math.PI * 2,
+      a: Math.random() * 0.5 + 0.4
+    };
+  }
+  var t = 0;
+  function tick(){
+    t += 0.01;
+    ctx.clearRect(0,0,w,h);
+    for(var i=0;i<flakes.length;i++){
+      var f = flakes[i];
+      f.y += f.s + f.r * 0.15;
+      f.x += Math.sin(t + f.d) * 0.5;
+      if(f.y > h + 10 || f.x < -10 || f.x > w + 10){ flakes[i] = make(false); flakes[i].x = Math.random() * w; continue; }
+      ctx.beginPath();
+      ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255,255,255,' + f.a + ')';
+      ctx.fill();
+    }
+    requestAnimationFrame(tick);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+  tick();
+})();
+</script>
 </body>
 </html>
